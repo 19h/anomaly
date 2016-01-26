@@ -1,6 +1,6 @@
 {
   "name": "anomaly",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node anomaly detection on continuous time series data",
   "main": "app.js",
   "scripts": {

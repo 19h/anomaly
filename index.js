@@ -51,8 +51,8 @@ class AnomalyDetection {
     push (value) {
         ++this.m_n;
 
-        let mean = this.mean();
-        let standardDeviation = this.standardDeviation();
+        const mean = this.mean();
+        const standardDeviation = this.standardDeviation();
 
         // initialize
         if (this.m_n === 1) {
@@ -72,8 +72,8 @@ class AnomalyDetection {
         // update trend
         this.trend(value);
 
-        let cisd = this.confidenceInterval * standardDeviation;
-        let preamble = Math.abs(value - mean);
+        const cisd = this.confidenceInterval * standardDeviation;
+        const preamble = Math.abs(value - mean);
 
         if (this.returnType === 1) {
             return preamble > cisd;
@@ -83,12 +83,12 @@ class AnomalyDetection {
     }
 
     pushMeta (value) {
-        let anomaly = this.push(value);
+        const anomaly = this.push(value);
 
-        let mean = this.mean();
-        let stddev = this.standardDeviation();
+        const mean = this.mean();
+        const stddev = this.standardDeviation();
 
-        let trend = this.t_old;
+        const trend = this.t_old;
 
         return {
             anomaly, mean, stddev, trend
@@ -96,23 +96,19 @@ class AnomalyDetection {
     }
 
     mean () {
-        let mean = 0.0;
-
         if (this.m_n > 0) {
-            mean = this.m_newM;
+            return this.m_newM;
         }
 
-        return mean;
+        return 0.0;
     }
 
     variance () {
-        let variance = 0.0;
-
         if (this.m_n > 1) {
             return this.m_newS / (this.m_n - 1);
         }
 
-        return variance;
+        return 0.0;
     }
 
     standardDeviation () {
